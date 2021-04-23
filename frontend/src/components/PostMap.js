@@ -1,16 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
-
-
 
 
 function PostMap(props) {
-  
-  // console.log(props.post)
-  // console.log(props.post.intersection1)
-  // console.log(props.post.intersection2)
-  // console.log(props.post.state)
-  // console.log(props.post.city)
+    
     return (
       <div>
         <iframe

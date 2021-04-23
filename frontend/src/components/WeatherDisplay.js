@@ -2,12 +2,12 @@ import React from 'react';
 
 const WeatherDisplay = (props) => {
  
-  console.log(props)
+  // console.log(props)
   
   
   return (
     <div>
-      Display the Weather  
+      We are tracking weather  
     </div>
   )
 }

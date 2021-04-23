@@ -38,7 +38,7 @@ function App() {
               <Route exact path="/profile" render={() => <ProfilePage />} />
               <Route exact path="/create-post" render={() => <CreatePost />} />
               <Route exact path="/edit-post/:postID" render={(routeProps) => <EditPost {...routeProps}/>} />
-              <Route exact path="/view-post/:postID" render={() => <PostPage/>} />
+              <Route exact path="/view-post/:postID" render={(routeProps) => <PostPage {...routeProps}/>} />
           
             </div>
 

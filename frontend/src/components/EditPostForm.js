@@ -55,7 +55,7 @@ const EditPostForm = (props) => {
         if (data) {
           console.log(data)
           if (history) {
-            history.push(`/view-post/${props.post.id}`)
+            history.push(`/profile`)
           }
         }
       

@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
-import PostListProfile from '../components/PostListProfile'
-import PostPage from '../components/PostListProfile'
+import PostProfile from '../components/PostProfile'
+
 
 
 const ProfilePage = () => {
@@ -36,7 +36,7 @@ const ProfilePage = () => {
     if (userInfo && userInfo.user) {
      
       let postElements = data.map((item, index) => {
-        return <PostListProfile key={index} post={item} />
+        return <PostProfile key={index} post={item} />
       })
 
       return (
@@ -68,6 +68,7 @@ const ProfilePage = () => {
   return (
     <div>
       Profile Page
+      <Link to="/create-post"><button>Create a Post</button></Link>
       <Link to="/home"><button>Home Page</button></Link>
       { renderProfilePage() }
     </div>

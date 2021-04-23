@@ -31,9 +31,7 @@ const GetWeather = (props) => {
     
   }, [lat,long])
  
-  console.log("latitude: ", lat)
-  console.log("longitude: ", long)
-  // console.log("Data: ", weatherData)
+  
   return (
     <div>
       { (weatherData) ? (

@@ -2,14 +2,16 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
-import PostListHome from '../components/PostListHome'
+import PostHome from '../components/PostHome'
 import GetWeather from '../components/GetWeather'
+import MapViewDirections from 'react-native-maps-directions'
 
 
 const HomePage = () => {
   const userInfo = useContext(UserContext)
   const [posts, setPosts] = useState([])
-  
+  const [lat, setLat] = useState([])
+  const [long, setLong] = useState([])
   
   
   
@@ -20,24 +22,23 @@ const HomePage = () => {
     }
     
     let response = await cyclistAPI.GetPosts(credentials)
-    
     setPosts(response)
     
   };
 
+
   useEffect(() => {
     GetPosts();
   }, []) 
-  // react doesn't like object dependencies
-  
-  
+
+ 
   function renderHomePage() {
     
 
     if (userInfo && userInfo.user) {
       
       let postElements = posts.map((item, index) => {
-        return <PostListHome key={index} post={item} />
+        return <PostHome key={index} post={item} />
       })
       
       return (
@@ -62,10 +63,10 @@ const HomePage = () => {
     }
   }
 
-
+  console.log(posts)
   return (
     <div>
-      The Weather should be under this
+      
       <GetWeather />
       HomePage
       <Link to="/profile"><button>View Profile</button></Link>
