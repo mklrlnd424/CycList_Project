@@ -11,20 +11,6 @@ function PostHome(props) {
 
   const {header, type, content, city, state, intersection1, intersection2, profile, user, img} = props.post
 
-  // const GetUserData = async () => {
-  //   let credentials = {
-  //     token: userInfo.token,
-  //     user: userInfo.user.username
-  //   }
-    
-  //   let response = await cyclistAPI.GetUserData(credentials, user)
-  //   getUsersData(response)
-    
-  // };
-
-  // useEffect(() => {
-  //   GetUserData();
-  // }, [usersData]) 
   
   function renderPosts() {
     

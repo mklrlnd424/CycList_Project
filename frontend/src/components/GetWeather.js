@@ -13,23 +13,23 @@ const GetWeather = (props) => {
   const [long, setLong] = useState([])
   const [weatherData, setWeatherData] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     navigator.geolocation.getCurrentPosition(function(position) {
+  //       setLat(position.coords.latitude);
+  //       setLong(position.coords.longitude);
+  //     });
 
-      await fetch(`${WEATHER_API_URL}${WEATHER_API_KEY}&q=${lat},${long}&aqi=no`)
-      .then(res => res.json())
-      .then(result => {
-        setWeatherData(result)
+  //     await fetch(`${WEATHER_API_URL}${WEATHER_API_KEY}&q=${lat},${long}&aqi=no`)
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       setWeatherData(result)
         
-      });
-    }
-    fetchData();
+  //     });
+  //   }
+  //   fetchData();
     
-  }, [lat,long])
+  // }, [lat,long])
  
   
   return (

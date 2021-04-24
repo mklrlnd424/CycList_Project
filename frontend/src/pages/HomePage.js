@@ -4,7 +4,8 @@ import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostHome from '../components/PostHome'
 import GetWeather from '../components/GetWeather'
-import MapViewDirections from 'react-native-maps-directions'
+import GetDirections from '../components/GetDirections'
+
 
 
 const HomePage = () => {
@@ -13,7 +14,17 @@ const HomePage = () => {
   const [lat, setLat] = useState([])
   const [long, setLong] = useState([])
   
+  useEffect(() => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
+  }, [lat,long])
   
+
+  console.log("lat: ", lat)
+  console.log("long: ", long)
+
   
   const GetPosts = async () => {
     let credentials = {
@@ -66,7 +77,7 @@ const HomePage = () => {
   console.log(posts)
   return (
     <div>
-      
+      <GetDirections lat={lat} long={long}/>
       <GetWeather />
       HomePage
       <Link to="/profile"><button>View Profile</button></Link>
