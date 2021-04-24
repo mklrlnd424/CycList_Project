@@ -1,0 +1,75 @@
+h1, h2, h3, h4, h5, p, span, strike {
+  font-family: 'Roboto', sans-serif;
+  margin: 1%;
+}
+
+
+
+
+
+
+
+
+
+
+/* Post Page */
+
+
+
+.postContainer {
+  /* border: 1px solid; */
+}
+.mapContainer {
+  border: 1px solid;
+  flex: 1;
+}
+.contentContainer {
+  border: 1px solid;
+  flex: 1;
+}
+.subject {
+  
+  display: flex;
+  border: 1px solid;
+}
+.profImgContainer {
+  flex: 1;
+  border: 1px solid;
+  
+}
+.profImgWrapper {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  
+}
+.profImg {
+  width: auto;
+  height: 130%;
+  margin-left: auto;
+  margin-right: auto
+}
+.headerContainer {
+  margin: 10px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  flex: 4;
+  border: 1px solid;
+}
+.postContents {
+
+}
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+
+.imgPost {
+ 
+  height: 100%
+}

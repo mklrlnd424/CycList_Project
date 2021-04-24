@@ -3,82 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostMap from '../components/PostMap'
-
-// styling
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
-
-const useStyles = makeStyles({
-  main: {
-  
-    background: 'lightblue',
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  postContainer: {
-    width: '80vw',
-    height: '40vh',
-    margin: '0 auto',
-    float: 'none',
-    display: 'flex',
-    border: '1px solid',
-  },
-  mapContainer: {
-    border: '1px solid',
-    flex: '1',
-  },
-  contentContainer: {
-    border: '1px solid',
-    flex: '1',
-  },
-  subject: {
-    
-    display: 'flex',
-    border: '1px solid',
-  },
-  profImgContainer: {
-    flex: '1',
-    border: '1px solid',
-    
-  },
-  profImg: {
-    height: "100px", 
-    borderRadius: "50%", 
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  headerContainer: {
-    margin: '10px',
-    textAlign: 'center',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-    flex: '4',
-    border: '1px solid',
-  },
-  postContents: {
-
-  },
-  imgContainer: {
-    flex: '1',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
-  },
-  imgPost: {
-    
-    border: '1px solid',
-    height: '100%'
-  }
-});
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 const Post = (props) => {
@@ -87,7 +12,7 @@ const Post = (props) => {
   let history = useHistory()
   const userInfo = useContext(UserContext)
   const [post, setPost] = useState([])
-  const classes = useStyles()
+  // const classes = useStyles()
   
   
  
@@ -127,42 +52,64 @@ const Post = (props) => {
 
   console.log("these are the current img:", post.img)
   return(
-  <div className={classes.main}>
-      <div className={classes.postContainer}>
-          <div className={classes.imgContainer}>
-            <img className={ classes.imgPost } src={ 'https://static.thenounproject.com/png/688285-200.png' } alt={post.header}/>
-          </div>
+  
+  
+  <Container className="postContainer">
+    <Row style={{margin: "5px 0 5px 0"}}>
+      <Col>
+      <Link to={`/profile`}>
+        <Button variant="primary" size="lg" block>
+          Profile
+        </Button>
+      </Link>
+      </Col>
+      <Col>
+      <Link to={`/edit-post/${props.post.match.params.postID}`}>
+        <Button variant="primary" size="lg" block>
+        Edit Post
+        </Button>
+      </Link>
+        </Col>
+        <Col>
+        <Button onClick={ handleDelete } variant="primary" size="lg" block>
+        Delete Post
+      </Button>
+      </Col>
+    </Row>
+  <Row>
+    <Col style={{display: "flex", justifyContent: "center", alignItems: "center", height: "40vh"}}>
+      
+        <img src={ 'https://static.thenounproject.com/png/688285-200.png' } alt={post.header}/>    
+    </Col>
 
-          <div className={classes.contentContainer}>
-
-            <div className={classes.subject}>
-
-              <div className={classes.profImgContainer}>
-                <img className={classes.profImg} src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/>
-              </div>
-              <div className={classes.headerContainer}>
-                <h2>{post.header}</h2>
-              </div>
-            </div>
-            <div>
-              <p></p>
-            </div>
-
-            <div>
-              <h4></h4>
-              <h4>{post.type}</h4>
-              <h4>{post.content}</h4>
-              <h4>{post.city}, {post.state}</h4>
-            </div>
-            
-          </div>
-
-
-          <div className={classes.mapContainer}>
-            <PostMap post={post}/>
-          </div>
+    <Col >
+      <Row >
+        <Col >
+        <div className="profImgWrapper">
+        <img className="profImg" src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/>
+        </div>
           
-      {/* <button onClick={ handleDelete }>Delete Post</button>
+        </Col>
+
+        <Col >
+          <h4 style={{paddingTop: "10px"}}>{post.header}</h4>
+          <h5 style={{}}>{post.city}, {post.state}</h5>
+        </Col>
+      </Row>
+
+      <Row>
+          <h6 style={{paddingTop: "10px"}}>{post.type}</h6>
+          <h6>{post.content}</h6>
+      </Row>
+          
+    </Col>
+
+      <Col>
+        <PostMap post={post}/>
+      </Col>
+  </Row>
+
+  {/* <button onClick={ handleDelete }>Delete Post</button>
         <Link to={`/edit-post/${props.post.match.params.postID}`}><button>Edit Post</button></Link>
         <br/> */}
         {/* <img style={{ height: "200px"}}src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/> */}
@@ -173,12 +120,9 @@ const Post = (props) => {
           <p>Intersection: {post.intersection1} and {post.intersection2}</p> */}
           
           {/* <img style={{ height: "200px"}} src={ `${post.img}` } alt={post.header}/> */}
-          
-      </div>
-        
- 
+</Container>
       
-  </div>
+  
   )
   
   
