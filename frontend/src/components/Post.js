@@ -54,8 +54,8 @@ const Post = (props) => {
   return(
   
   
-  <Container className="postContainer">
-    <Row style={{margin: "5px 0 5px 0"}}>
+  <Container fluid >
+    <Row style={{margin: "10px 0 10px 0"}}>
       <Col>
       <Link to={`/profile`}>
         <Button variant="primary" size="lg" block>
@@ -63,7 +63,7 @@ const Post = (props) => {
         </Button>
       </Link>
       </Col>
-      <Col>
+      <Col >
       <Link to={`/edit-post/${props.post.match.params.postID}`}>
         <Button variant="primary" size="lg" block>
         Edit Post
@@ -76,33 +76,45 @@ const Post = (props) => {
       </Button>
       </Col>
     </Row>
-  <Row>
-    <Col style={{display: "flex", justifyContent: "center", alignItems: "center", height: "40vh"}}>
+  <Row style={{paddingTop: "10px"}}>
+
+    <Col  className="imgPost">
       
         <img src={ 'https://static.thenounproject.com/png/688285-200.png' } alt={post.header}/>    
     </Col>
 
-    <Col >
+    <Col className="contentBackground">
+
+    
+
       <Row >
-        <Col >
-        <div className="profImgWrapper">
-        <img className="profImg" src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/>
-        </div>
-          
-        </Col>
+        <div style={{paddingTop: "1vh"}}>
 
         <Col >
-          <h4 style={{paddingTop: "10px"}}>{post.header}</h4>
+          <div className="profImgWrapper">
+           <img className="profImg" src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/>
+          </div>
+        </Col>
+        </div>
+        <Col >
+          <h4 style={{paddingTop: "1vh"}}>{post.header}</h4>
           <h5 style={{}}>{post.city}, {post.state}</h5>
         </Col>
+
+
+       
       </Row>
 
       <Row>
-          <h6 style={{paddingTop: "10px"}}>{post.type}</h6>
-          <h6>{post.content}</h6>
+          <h6 style={{padding: "1vh"}}>{post.type}</h6>
+          <h6 style={{padding: "1vh"}}>{post.content}</h6>
       </Row>
-          
+
+    
+        
+
     </Col>
+        
 
       <Col>
         <PostMap post={post}/>
