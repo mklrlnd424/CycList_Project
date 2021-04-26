@@ -5,6 +5,7 @@ import PostMap from './PostMap'
 import PostPage from '../pages/PostPage'
 import cyclistAPI from '../api/cyclistAPI'
 import Post from './Post'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 
@@ -18,20 +19,70 @@ function PostProfile(props) {
 
   
       return(
-        <div>
-          <Link to={`/view-post/${props.post.id}`}><button>View Post</button></Link>
-          <Link to={`/edit-post/${props.post.id}`}><button>Edit Post</button></Link>
-          <br/>
-          <img style={{ height: "200px"}}src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/>
-          <p>Subject: {header}</p>
-          <p>Type: {type}</p>
-          <p>Body: {content}</p>
-          <p>City: {city}, {state}</p>
-          <p>Intersection: {intersection1} and {intersection2}</p>
-          <img style={{ height: "200px"}}src={img} alt={header}/>
-          <PostMap post={props.post}/>
-          <hr/>
-        </div>
+          <Container style={{paddingBottom: "10vh"}}>
+            <Row style={{margin: "10px 0 10px 0"}}>
+              <Col >
+
+              <Link to={`/view-post/${props.post.id}`}>
+              <Button variant="primary" size="lg" block> View Post </Button>
+              </Link>
+
+              </Col>
+              <Col>
+
+              <Link to={`/edit-post/${props.post.id}`}>
+                <Button variant="primary" size="lg" block> Edit Post </Button>
+              </Link>
+
+              </Col>
+            </Row>
+            <Row>
+
+            
+            <Col className="contentBackgroundProf">
+            <Row >
+              <div style={{paddingTop: "1vh"}}>
+
+              <Col>
+                <div className="profImgWrapper">
+                <img className="profImg" src={userInfo.user.profile.prof_pic} alt={userInfo.user.username}/>
+                </div>
+              </Col>
+              </div>
+              <Col >
+                <h4 style={{paddingTop: "1vh"}}>{userInfo.user.username}</h4>
+                <h5 style={{}}>{city}, {state}</h5>
+              </Col>
+
+
+            
+            </Row>
+
+            <Row>
+                <h6 style={{padding: "2vh"}}>{type}</h6><br/>
+                <h6 style={{padding: "2vh"}}>{content}</h6>
+            </Row>
+
+             
+            </Col>
+            
+
+            <Col style={{padding: "0"}}>
+              <Row className="imgProfPage">
+
+          
+                <img style={{width: "100%"}} src={ img } alt={header}/> 
+            
+               
+              </Row>
+              <Row className="mapProfPage">
+              <PostMap post={props.post}/>
+              </Row>
+              
+            </Col>
+
+            </Row>
+          </Container>
       )
    
   }

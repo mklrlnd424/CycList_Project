@@ -3,29 +3,18 @@ import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostHome from '../components/PostHome'
-import GetWeather from '../components/GetWeather'
+import WeatherDisplay from '../components/WeatherDisplay'
 import GetDirections from '../components/GetDirections'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 
 const HomePage = () => {
   const userInfo = useContext(UserContext)
   const [posts, setPosts] = useState([])
-  const [lat, setLat] = useState([])
-  const [long, setLong] = useState([])
   
-  useEffect(() => {
-      navigator.geolocation.getCurrentPosition(function(position) {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
-    });
-  }, [lat,long])
   
 
-  console.log("lat: ", lat)
-  console.log("long: ", long)
-
-  
   const GetPosts = async () => {
     let credentials = {
       token: userInfo.token,
@@ -42,7 +31,8 @@ const HomePage = () => {
     GetPosts();
   }, []) 
 
- 
+
+
   function renderHomePage() {
     
 
@@ -74,15 +64,69 @@ const HomePage = () => {
     }
   }
 
-  console.log(posts)
+  // information for weather
+  const [lat, setLat] = useState([]);
+  const [long, setLong] = useState([]);
+  const [data, setData] = useState([]);
+
+
+  const WEATHER_API_URL = 'http://api.weatherapi.com/v1/current.json?key='
+  const WEATHER_API_KEY = 'f39d610ee89543c0ad2210538212204'
+
+  useEffect(() => {
+    const fetchData = async () => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        setLat(position.coords.latitude);
+        setLong(position.coords.longitude);
+      });
+
+      await fetch(`${WEATHER_API_URL}${WEATHER_API_KEY}&q=${lat},${long}&aqi=no`)
+      .then(res => res.json())
+      .then(result => {
+        setData(result)
+      });
+    }
+    fetchData();
+  }, [lat,long])
+
+ 
   return (
     <div>
-      <GetDirections lat={lat} long={long}/>
-      <GetWeather />
-      HomePage
-      <Link to="/profile"><button>View Profile</button></Link>
-      { renderHomePage() }
-      <p></p>
+      <Container >
+          HomePage
+          <Link to="/profile"><button>View Profile</button></Link>
+          <Row>
+
+            <Col style={{border: "1px solid"}}>
+            { renderHomePage() }
+            </Col>
+
+            <Col style={{border: "1px solid"}}>
+              <div className="sticky-top">
+
+              <Row style={{border: "1px solid"}}>
+                
+                  {(typeof data.location != 'undefined') ? (
+                        <WeatherDisplay weatherData={data}/>
+                      ): (
+                        <div> No weather data</div>
+                  )}
+                
+              </Row >
+              <Row style={{border: "4px solid", height: "50vh"}}>
+                <div style={{border: "1px solid", width: "100%", height: "100%"}}>
+                  <GetDirections lat={lat} long={long}/>
+                </div>
+                
+                
+              </Row>
+              </div>
+            </Col>
+
+        </Row>
+      </Container>
+     
+     
     </div>
   )
 

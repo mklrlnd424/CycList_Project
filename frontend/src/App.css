@@ -36,9 +36,6 @@ h6, p {
 
 
 
-.postContainer {
-  
-}
 .mapContainer {
   border: 1px solid;
   flex: 1;
@@ -71,16 +68,13 @@ h6, p {
   margin-left: auto;
   margin-right: auto
 }
-.headerContainer {
-  margin: 10px;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  flex: 4;
-  border: 1px solid;
-}
-.postContents {
 
+.mapContainer {
+  padding: 0;
+  border-radius: 0 5% 5% 0;
+  overflow: hidden;
+  
+  
 }
 .imgContainer {
   display: flex;
@@ -90,10 +84,12 @@ h6, p {
 }
 
 .imgPost {
-  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  border-radius: 5% 0 0 5%;
+
 }
 
 .colPad{
@@ -101,7 +97,60 @@ h6, p {
 }
 
 .contentBackground {
-  border-radius: 5%;
   background-color: #fffdf0;
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  
+  overflow:hidden;
+}
+
+.mapProfPage {
+  height: 50%;
+  width: 105%;
+  border-radius: 0 0 10% 0;
+  overflow: hidden;
+}
+
+.mapHomePage {
+  height: 100%;
+  width: 105%;
+  border-radius: 0 0 10% 0;
+  overflow: hidden;
+}
+
+.imgProfPage {
+  z-index: 999;
+  height: 50%;
+  border-radius: 0 5% 0 0;
+  width: 105%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+.contentBackgroundProf {
+  border-radius: 5% 0 0 5%;
+  background-color: #fffdf0;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+}
+
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postContainer {
+  padding-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.widget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }

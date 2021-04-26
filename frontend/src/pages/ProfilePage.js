@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostProfile from '../components/PostProfile'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 
@@ -70,7 +71,18 @@ const ProfilePage = () => {
       Profile Page
       <Link to="/create-post"><button>Create a Post</button></Link>
       <Link to="/home"><button>Home Page</button></Link>
-      { renderProfilePage() }
+      <Container >
+        <Row>
+        <Col style={{border: "1px solid"}}>
+          { renderProfilePage() }
+        </Col>
+        <Col style={{border: "1px solid"}} xs={5}>
+          Some text
+        </Col>
+
+        </Row>
+
+      </Container>
     </div>
   )
 

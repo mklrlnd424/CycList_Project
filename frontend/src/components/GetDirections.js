@@ -15,24 +15,23 @@ const GetDirections = (props) => {
     setSource(`${MAP_URL}${MAP_KEY}&origin=${props.lat},${props.long}&destination=${destination}&mode=bicycling`)
   }
   
-  console.log(destination)
+  
   return (
-    <div>
+    <div >
+      
+      <iframe
+        width="100%"
+        height="250vh"
+        frameBorder="0"
+        marginWidth="0"
+        src={source} allowFullScreen>
+      </iframe>
 
       <form onSubmit={e => handleSubmit(e)}>
         <input name='userName' type='text' value={ destination } onChange={e => setDestination(e.target.value)}/>
         <input className='submitButton' type='submit' value='Submit Post'/>
-        
       </form>
-      
-      
-      <iframe
-        width="450"
-        height="250"
-        frameBorder="0"
-        style= {{ border: 0 }}
-        src={source} allowFullScreen>
-      </iframe>
+
     </div>
   )
 }
