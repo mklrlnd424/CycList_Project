@@ -88,7 +88,7 @@ class Post(models.Model):
     intersection2 = models.CharField(max_length=255)
     created_date = models.DateTimeField(auto_now_add=True, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
-    # images later
+    
 
     def __str__(self):
         return f"{self.header} {self.type}"

@@ -5,7 +5,8 @@ import PostMap from './PostMap'
 import PostPage from '../pages/PostPage'
 import cyclistAPI from '../api/cyclistAPI'
 import Post from './Post'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Card, Container, Row, Col, Button } from 'react-bootstrap'
+import Flippy, { FrontSide, BackSide } from 'react-flippy'
 
 
 
@@ -19,8 +20,8 @@ function PostProfile(props) {
 
   
       return(
-          <Container style={{paddingBottom: "10vh"}}>
-            <Row style={{margin: "10px 0 10px 0"}}>
+          <Container style={{paddingBottom: ".5rem"}}>
+            <Row style={{paddingBottom: ".5rem"}}>
               <Col >
 
               <Link to={`/view-post/${props.post.id}`}>
@@ -71,7 +72,7 @@ function PostProfile(props) {
               <Row className="imgProfPage">
 
           
-                <img style={{width: "100%"}} src={ img } alt={header}/> 
+                <img style={{width: "100%", minHeight: "100%"}} src={ img } alt={header}/> 
             
                
               </Row>
@@ -90,7 +91,14 @@ function PostProfile(props) {
   
   return (
     <div>
+      <Flippy style={{padding: '2rem'}}>
+    <FrontSide style={{ borderRadius: '20px 20px 20px 20px'}}>
       { renderPosts() }
+    </FrontSide>
+    <BackSide style={{ borderRadius: '20px 20px 20px 20px'}}>
+    <PostMap post={props.post}/>
+    </BackSide>
+      </Flippy>
     </div>
   )
 }

@@ -4,11 +4,10 @@ import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostMap from './PostMap'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import Flippy, { FrontSide, BackSide } from 'react-flippy'
 
 function PostHome(props) {
-  // console.log(props)
   const userInfo = useContext(UserContext)
-  const [usersData, getUsersData] = useState({})
 
   const {id, header, type, content, city, state, intersection1, intersection2, profile, user, img} = props.post
 
@@ -18,8 +17,8 @@ function PostHome(props) {
                         
     return(
       
-      <Container style={{paddingBottom: "10vh"}}>
-      <Row style={{margin: "10px 0 10px 0"}}>
+      <Container style={{paddingBottom: ".5rem"}}>
+      <Row style={{paddingBottom: ".5rem"}}>
               <Col >
 
               <Link to={`/view-post/${id}`}>
@@ -70,7 +69,7 @@ function PostHome(props) {
               <Row className="imgProfPage">
 
           
-                <img style={{width: "100%", height: "100%"}} src={ img } alt={header}/> 
+                <img style={{width: "100%", minHeight: "100%"}} src={ img } alt={header}/> 
             
                
               </Row>
@@ -91,7 +90,15 @@ function PostHome(props) {
 
   return (
     <div>
+      <Flippy style={{paddingBottom: '1rem'}}>
+    <FrontSide style={{ borderRadius: '20px 20px 20px 20px', backgroundColor: "#343a40"}}>
       { renderPosts() }
+    </FrontSide>
+    <BackSide style={{ borderRadius: '20px 20px 20px 20px', backgroundColor: "#343a40"}}>
+    <PostMap post={props.post}/>
+    </BackSide>
+      </Flippy>
+      
     </div>
   )
 }

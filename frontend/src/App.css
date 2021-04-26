@@ -9,17 +9,17 @@ body{
 }
 
 h1, h2, h3, h4, h5, p, span, strike {
-  margin: 1%;
-  font-family: 'Roboto';
-  font-weight: bold
+  
+  /* font-family: 'Roboto';
+  font-weight: bold */
   
  
   
 }
 
 h6, p {
-  margin: 1%;
-  font-family: 'Roboto'
+  
+  /* font-family: 'Roboto' */
   
 }
 
@@ -118,7 +118,7 @@ h6, p {
 }
 
 .imgProfPage {
-  z-index: 999;
+  /* z-index: 999; */
   height: 50%;
   border-radius: 0 5% 0 0;
   width: 105%;
@@ -148,9 +148,42 @@ h6, p {
   align-items: center
 }
 
-.widget {
+.centered {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  font-family: 'Roboto';
+  background-color: #343a40 !important;
+  color: white
+}
+
+.collapse {
+  background-color: rgb(173, 172, 172) !important;
+}
+.weatherDiv{
+  min-height: 2rem;
+  align-items: center;
+  color: white;
+}
+
+.getDir {
+  
+  border-radius: 20px;
+  overflow: hidden
+}
+.Roboto {
+  font-family: 'Roboto';
+  font-weight: bold;
+}
+
+@media all and (min-width: 480px) {
+  .login {
+    padding: 60px 0;
+  }
+
+  .login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
 }

@@ -44,7 +44,6 @@ const HomePage = () => {
       
       return (
         <div>
-          <h2>You are logged in as <span className="user">{userInfo.user.username}</span><hr/></h2>
           { postElements }
         </div>
       )
@@ -74,6 +73,7 @@ const HomePage = () => {
   const WEATHER_API_KEY = 'f39d610ee89543c0ad2210538212204'
 
   useEffect(() => {
+
     const fetchData = async () => {
       navigator.geolocation.getCurrentPosition(function(position) {
         setLat(position.coords.latitude);
@@ -89,22 +89,22 @@ const HomePage = () => {
     fetchData();
   }, [lat,long])
 
- 
+  console.log(posts)
   return (
     <div>
       <Container >
-          HomePage
-          <Link to="/profile"><button>View Profile</button></Link>
+          
           <Row>
 
-            <Col style={{border: "1px solid"}}>
+            <Col >
+              
             { renderHomePage() }
             </Col>
 
-            <Col style={{border: "1px solid"}}>
+            <Col >
               <div className="sticky-top">
 
-              <Row style={{border: "1px solid"}}>
+              <Row >
                 
                   {(typeof data.location != 'undefined') ? (
                         <WeatherDisplay weatherData={data}/>
@@ -113,9 +113,11 @@ const HomePage = () => {
                   )}
                 
               </Row >
-              <Row style={{border: "4px solid", height: "50vh"}}>
-                <div style={{border: "1px solid", width: "100%", height: "100%"}}>
-                  <GetDirections lat={lat} long={long}/>
+              <Row className="getDir">
+                <div style={{width: "100%", height: "auto", padding: "20px", backgroundColor: "#343a40"}}>
+                  <div style={{borderRadius: "10px", overflow: "hidden"}}>
+                    <GetDirections lat={lat} long={long}/>
+                  </div>
                 </div>
                 
                 
