@@ -25,14 +25,14 @@ function PostProfile(props) {
               <Col >
 
               <Link to={`/view-post/${props.post.id}`}>
-              <Button variant="primary" size="lg" block> View Post </Button>
+              <Button variant="secondary" size="lg" block> View Post </Button>
               </Link>
 
               </Col>
               <Col>
 
               <Link to={`/edit-post/${props.post.id}`}>
-                <Button variant="primary" size="lg" block> Edit Post </Button>
+                <Button variant="secondary" size="lg" block> Edit Post </Button>
               </Link>
 
               </Col>
@@ -52,7 +52,7 @@ function PostProfile(props) {
               </div>
               <Col >
                 <h4 style={{paddingTop: "1vh"}}>{userInfo.user.username}</h4>
-                <h5 style={{}}>{city}, {state}</h5>
+                <h5>{city}, {state}</h5>
               </Col>
 
 
@@ -91,13 +91,13 @@ function PostProfile(props) {
   
   return (
     <div>
-      <Flippy style={{padding: '2rem'}}>
-    <FrontSide style={{ borderRadius: '20px 20px 20px 20px'}}>
-      { renderPosts() }
-    </FrontSide>
-    <BackSide style={{ borderRadius: '20px 20px 20px 20px'}}>
-    <PostMap post={props.post}/>
-    </BackSide>
+      <Flippy style={{paddingBottom: '1rem'}}>
+        <FrontSide className="flippy">
+          { renderPosts() }
+        </FrontSide>
+        <BackSide className="flippy">
+        <PostMap post={props.post}/>
+        </BackSide>
       </Flippy>
     </div>
   )

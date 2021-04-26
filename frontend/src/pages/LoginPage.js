@@ -57,7 +57,7 @@ const LoginPage = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit">
+        <Button block size="lg" type="submit" variant="secondary">
           Login
         </Button>
       </Form>

@@ -41,14 +41,15 @@ const WeatherDisplay = (props) => {
                       <Row className="weatherDiv">
                         Wind: {props.weatherData.current.wind_mph}mph  {props.weatherData.current.wind_dir}
                       </Row>
+                      <Row className="weatherDiv">
+                        Wind Direction:  {props.weatherData.current.wind_degree}&deg; {props.weatherData.current.wind_dir}
+                      </Row>
                     </Col>
-                    <Col xs={3} className="iconCont" >
+                    <Col xs={4} className="iconCont" >
                       <img style={{height: "100%"}} src={ props.weatherData.current.condition.icon } alt={ props.weatherData.current.condition.text }/>
                     </Col>
                     </Row>
-                    <Row className="weatherDiv">
-                        Wind Direction:  {props.weatherData.current.wind_degree}&deg; {props.weatherData.current.wind_dir}
-                      </Row>
+                    
                     <Row className="weatherDiv">
                         Humidity: {props.weatherData.current.humidity}
                     </Row>

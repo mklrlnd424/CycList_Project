@@ -40,6 +40,13 @@ h6, p {
   border: 1px solid;
   flex: 1;
 }
+
+.postMap {
+  border-radius: 0 20px 20px 0;
+  height: 100%;
+  overflow: hidden
+}
+
 .contentContainer {
   border: 1px solid;
   flex: 1;
@@ -88,6 +95,7 @@ h6, p {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  height: 100%;
   border-radius: 5% 0 0 5%;
 
 }
@@ -187,3 +195,9 @@ h6, p {
     max-width: 320px;
   }
 }
+
+.flippy {
+  border-radius: 20px;
+  background-color: #343a40 !important;
+}
+

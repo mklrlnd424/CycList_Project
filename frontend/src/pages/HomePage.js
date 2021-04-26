@@ -66,7 +66,7 @@ const HomePage = () => {
   // information for weather
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
-  const [data, setData] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
 
 
   const WEATHER_API_URL = 'http://api.weatherapi.com/v1/current.json?key='
@@ -83,7 +83,7 @@ const HomePage = () => {
       await fetch(`${WEATHER_API_URL}${WEATHER_API_KEY}&q=${lat},${long}&aqi=no`)
       .then(res => res.json())
       .then(result => {
-        setData(result)
+        setWeatherData(result)
       });
     }
     fetchData();
@@ -106,8 +106,8 @@ const HomePage = () => {
 
               <Row >
                 
-                  {(typeof data.location != 'undefined') ? (
-                        <WeatherDisplay weatherData={data}/>
+                  {(typeof weatherData.location != 'undefined') ? (
+                        <WeatherDisplay weatherData={weatherData}/>
                       ): (
                         <div> No weather data</div>
                   )}

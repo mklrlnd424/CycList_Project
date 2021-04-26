@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
-import cyclistAPI from '../api/cyclistAPI'
 import PostMap from './PostMap'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import Flippy, { FrontSide, BackSide } from 'react-flippy'
@@ -9,7 +8,10 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy'
 function PostHome(props) {
   const userInfo = useContext(UserContext)
 
-  const {id, header, type, content, city, state, intersection1, intersection2, profile, user, img} = props.post
+  const {id, header, type, content, city, state, img, profile, user} = props.post
+
+  console.log("userInfo: ",userInfo.user.profile.id)
+  console.log("profile: ", profile)
 
   
   function renderPosts() {
@@ -22,15 +24,21 @@ function PostHome(props) {
               <Col >
 
               <Link to={`/view-post/${id}`}>
-              <Button variant="primary" size="lg" block> View Post </Button>
+              <Button variant="secondary" size="lg" block> View Post </Button>
               </Link>
 
               </Col>
               <Col>
-
-              <Link to={`/edit-post/${id}`}>
-                <Button variant="primary" size="lg" block> Edit Post </Button>
+              
+              {
+                userInfo.user.profile.id === profile ? <Link to={`/edit-post/${id}`}>
+                <Button variant="secondary" size="lg" block> Edit Post </Button>
+              </Link> : <Link to={`/edit-post/${id}`}>
+                <Button variant="secondary" size="lg" block disabled> Edit Post </Button>
               </Link>
+
+              }
+              
 
               </Col>
             </Row>
@@ -49,7 +57,7 @@ function PostHome(props) {
               </div>
               <Col >
                 <h4 style={{paddingTop: "1vh"}}>{userInfo.user.username}</h4>
-                <h5 style={{}}>{city}, {state}</h5>
+                <h5>{city}, {state}</h5>
               </Col>
 
 
@@ -91,10 +99,10 @@ function PostHome(props) {
   return (
     <div>
       <Flippy style={{paddingBottom: '1rem'}}>
-    <FrontSide style={{ borderRadius: '20px 20px 20px 20px', backgroundColor: "#343a40"}}>
+    <FrontSide className="flippy">
       { renderPosts() }
     </FrontSide>
-    <BackSide style={{ borderRadius: '20px 20px 20px 20px', backgroundColor: "#343a40"}}>
+    <BackSide className="flippy">
     <PostMap post={props.post}/>
     </BackSide>
       </Flippy>

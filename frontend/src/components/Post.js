@@ -50,7 +50,6 @@ const Post = (props) => {
     }
   }
 
-  console.log("these are the current img:", post.img)
   return(
   
   <div>
@@ -59,20 +58,20 @@ const Post = (props) => {
     <Row style={{margin: "10px 0 10px 0"}}>
       <Col>
       <Link to={`/profile`}>
-        <Button variant="primary" size="lg" block>
+        <Button variant="secondary" size="lg" block>
           Profile
         </Button>
       </Link>
       </Col>
       <Col>
       <Link to={`/edit-post/${props.post.match.params.postID}`}>
-        <Button variant="primary" size="lg" block>
+        <Button variant="secondary" size="lg" block>
         Edit Post
         </Button>
       </Link>
         </Col>
         <Col>
-        <Button onClick={ handleDelete } variant="primary" size="lg" block>
+        <Button onClick={ handleDelete } variant="secondary" size="lg" block>
         Delete Post
       </Button>
       </Col>
@@ -84,7 +83,7 @@ const Post = (props) => {
   <Row style={{height: "40vh"}}>
 
     <Col  className="imgPost">
-        <img style={{height: "300px"}} src={ post.img } alt={post.header}/>    
+        <img style={{minHeight: "300px", height: "100%"}} src={ post.img } alt={post.header}/>    
     </Col>
 
     <Col className="contentBackground">
@@ -113,8 +112,13 @@ const Post = (props) => {
     </Col>
         
 
-      <Col style={{paddingLeft: "0", borderRadius: "0 5% 5% 0", overflow: "hidden"}}>
+      <Col style={{paddingLeft: "0"}}>
+        <div className="postMap">
         <PostMap post={post}/>
+    
+        </div>
+
+  
       </Col>
   </Row>
     </Container>

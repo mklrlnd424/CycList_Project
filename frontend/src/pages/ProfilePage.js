@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostProfile from '../components/PostProfile'
+import WeatherDisplay from '../components/WeatherDisplay'
+import GetDirections from '../components/GetDirections'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
@@ -42,10 +44,6 @@ const ProfilePage = () => {
 
       return (
         <div>
-          <h2>You are logged in as <span className="user">
-          {userInfo.user.username}</span></h2>
-          
-          <hr/>
           { postElements }
         </div>
       )
@@ -66,24 +64,70 @@ const ProfilePage = () => {
 
   }
   
+  const [lat, setLat] = useState([]);
+  const [long, setLong] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
+
+
+  const WEATHER_API_URL = 'http://api.weatherapi.com/v1/current.json?key='
+  const WEATHER_API_KEY = 'f39d610ee89543c0ad2210538212204'
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        setLat(position.coords.latitude);
+        setLong(position.coords.longitude);
+      });
+
+      await fetch(`${WEATHER_API_URL}${WEATHER_API_KEY}&q=${lat},${long}&aqi=no`)
+      .then(res => res.json())
+      .then(result => {
+        setWeatherData(result)
+      });
+    }
+    fetchData();
+  }, [lat,long])
+
+  console.log(lat)
+  console.log(long)
+  console.log(weatherData)
   return (
-    <div>
-      Profile Page
-      <Link to="/create-post"><button>Create a Post</button></Link>
-      <Link to="/home"><button>Home Page</button></Link>
+  
+      
       <Container >
         <Row>
         <Col style={{border: "1px solid"}}>
           { renderProfilePage() }
         </Col>
-        <Col style={{border: "1px solid"}} xs={5}>
-          Some text
+        <Col style={{border: "1px solid"}}>
+          <div className="sticky-top">
+
+          <Row >
+            
+              {(typeof weatherData.location != 'undefined') ? (
+                    <WeatherDisplay weatherData={weatherData}/>
+                  ): (
+                    <div> No weather data</div>
+              )}
+            
+          </Row >
+          <Row className="getDir">
+            <div style={{width: "100%", height: "auto", padding: "20px", backgroundColor: "#343a40"}}>
+              <div style={{borderRadius: "10px", overflow: "hidden"}}>
+                <GetDirections lat={lat} long={long}/>
+              </div>
+            </div>
+            
+            
+          </Row>
+          </div>
         </Col>
 
         </Row>
 
       </Container>
-    </div>
+    
   )
 
 }
