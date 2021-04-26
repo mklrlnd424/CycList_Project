@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import cyclistAPI from '../api/cyclistAPI'
 import UserContext from '../contexts/UserContext'
 import { Link, useHistory } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 const PostForm = () => {
   let history = useHistory()
@@ -21,6 +22,7 @@ const PostForm = () => {
   const [intersection2, setIntersection2] = useState("")
   const [profileNo, setProfileNo] = useState(0)
   const [userNo, setUserNo] = useState(0)
+  const [img, setImg] = useState("")
   
 
   const handleSubmit = async (e) => {
@@ -68,12 +70,13 @@ const PostForm = () => {
   },[])
 
   
-
+  console.log(header)
+  console.log(type)
   console.log("Post Lat: ", lat)
   console.log("Post Long: ", long)
   return (
     <div>
-      <Link to={"/profile"}><button>Profile Page</button></Link>
+      {/* <Link to={"/profile"}><button>Profile Page</button></Link>
       <Link to={"/home"}><button>Home Page</button></Link>
     <form onSubmit={e => { handleSubmit(e) }}>
       <label>Header</label>
@@ -155,8 +158,55 @@ const PostForm = () => {
       <input name='userName' type='text' value={ intersection2 } onChange={e => setIntersection2(e.target.value)}/>
       <br />
       <input className='submitButton' type='submit' value='Submit Post'/>
-    </form>
+    </form> */}
+        <Form style={{width: "100%", padding: "20px"}}>
+          <Form.Group controlId="header">
+            <Form.Label>Post Subject</Form.Label>
+            <Form.Control 
+            type="header" 
+            placeholder="Enter Subject"
+            value={ header }
+            onChange={(e) => setHeader(e.target.value)}
+            />
+          </Form.Group>
 
+          <Form.Group>
+          <Form.Label>Post Type</Form.Label>
+          <Form.Control as="select"
+            value={ type }
+            onChange={e => setType(e.target.value)}
+            >
+            <option value="" disabled>Select One</option>
+            <option value="route">Trail Route</option>
+            <option value="hazardous">Hazardous</option>
+            <option value="other">Other</option>
+          </Form.Control>
+          </Form.Group>
+          
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Post Content</Form.Label>
+            <Form.Control as="textarea"
+              placeholder="Enter Content"
+              value = { content }
+              onChange={e => setContent(e.target.value)}
+              rows={3}
+              />
+          </Form.Group>
+
+          <Form.Group controlId="header">
+            <Form.Label>Post Image</Form.Label>
+            <Form.Control 
+            type="pic" 
+            placeholder="Upload Image"
+            value={ img }
+            onChange={(e) => setImg(e.target.value)}
+            />
+          </Form.Group>
+
+          <Button variant="secondary" type="submit" block>
+            Submit
+          </Button>
+      </Form>
   </div>
   )
 }

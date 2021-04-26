@@ -194,6 +194,8 @@ h6, p {
     margin: 0 auto;
     max-width: 320px;
   }
+
+  
 }
 
 .flippy {
@@ -201,3 +203,16 @@ h6, p {
   background-color: #343a40 !important;
 }
 
+.formBox {
+  margin: auto;
+  border: 1px solid;
+  display: block;
+  max-width: 500px;
+  min-width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.createEdit {
+  width: 100%;
+}

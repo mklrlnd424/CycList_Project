@@ -35,8 +35,6 @@ const LoginPage = (props) => {
   
   }
   
-  console.log(userName)
-  console.log(password)
   return( 
   <div className="login">
     <Form onSubmit={handleLogin}>
@@ -61,21 +59,6 @@ const LoginPage = (props) => {
           Login
         </Button>
       </Form>
-    {/* <h2>Login</h2>
-    <form onSubmit={ handleLogin }>
-      <div className="form">
-
-        <label className="form-label" htmlFor="username">Username: </label>
-        <input className="form-input" name="username" type="text" placeholder="username"></input>
-
-        <label className="form-label" htmlFor="password">Password: </label>
-        <input className="form-input" name="password" type="text" placeholder="password"></input>
-
-        <button className="form-button" type="submit">Login</button>
-      </div>
-    </form>
-      <br />
-    <h3><Link to="/register">Register</Link></h3> */}
   </div>
   )
 }
