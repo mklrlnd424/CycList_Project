@@ -1,13 +1,28 @@
-
+import { useEffect, useState } from 'react'
 
 function PostMap(props) {
-    
+    console.log(props)
+    console.log(props.post.latitude)
+    console.log(props.post.longitude)
+    const [correctLong, setCorrectLong] = useState("")
+
+    useEffect(() => {
+      
+      if(parseInt(props.post.longitude) < 0) {
+        setCorrectLong(String(parseFloat(props.post.longitude)*-1))
+  
+      } else {
+        setCorrectLong(props.post.longitude)
+      }
+    }, [])
+
+    console.log("corrected long, ", correctLong)
     return (
         <iframe
             width="100%"
             height="100%"
             frameBorder="0" 
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBuXnOdpocA7_WBENeiWkLOY5lccv-szzk&q=${props.post.intersection1}+and+${props.post.intersection2}+${props.post.city}+${props.post.state}`} allowFullScreen>
+            src={`https://maps.google.com/maps?q=${props.post.latitude}N,${correctLong}W&hl=es;z=14&output=embed`} allowFullScreen>
           </iframe>
 
     )

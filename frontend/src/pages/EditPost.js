@@ -5,6 +5,7 @@ import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import EditPostForm from '../components/EditPostForm'
 
+
 const EditPost = (props) => {
   const userInfo = useContext(UserContext)
   const [post, setPost] = useState([])
@@ -31,10 +32,9 @@ const EditPost = (props) => {
   
 
   return (
-    <div>
-      <h1>Edit a Post</h1>
+    <div className="formBox">
       <EditPostForm post={post}/>
-  </div>
+    </div>
   )
 }
   

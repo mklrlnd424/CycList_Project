@@ -50,6 +50,7 @@ const Post = (props) => {
     }
   }
 
+  console.log(post)
   return(
   
   <div>

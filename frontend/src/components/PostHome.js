@@ -8,7 +8,7 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy'
 function PostHome(props) {
   const userInfo = useContext(UserContext)
 
-  const {id, header, type, content, city, state, img, profile, user} = props.post
+  const {id, header, type, content, post_city, post_state, img, profile, user} = props.post
 
   console.log("userInfo: ",userInfo.user.profile.id)
   console.log("profile: ", profile)
@@ -57,7 +57,7 @@ function PostHome(props) {
               </div>
               <Col >
                 <h4 style={{paddingTop: "1vh"}}>{userInfo.user.username}</h4>
-                <h5>{city}, {state}</h5>
+                <h5>{post_city}, {post_state}</h5>
               </Col>
 
 
@@ -65,7 +65,9 @@ function PostHome(props) {
             </Row>
 
             <Row>
-                <h6 style={{padding: "2vh"}}>{type}</h6><br/>
+                <h6 style={{padding: "2vh"}}>{type}</h6>
+                </Row>
+              <Row>
                 <h6 style={{padding: "2vh"}}>{content}</h6>
             </Row>
 

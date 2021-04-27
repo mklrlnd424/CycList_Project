@@ -13,7 +13,7 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy'
 function PostProfile(props) {
   const userInfo = useContext(UserContext)
   let history = useHistory()
-  const { header, city, content, intersection1, intersection2, state, type, img} = props.post
+  const { header, city, content, post_city, post_state, state, type, img} = props.post
   
 
   function renderPosts() {
@@ -52,7 +52,7 @@ function PostProfile(props) {
               </div>
               <Col >
                 <h4 style={{paddingTop: "1vh"}}>{userInfo.user.username}</h4>
-                <h5>{city}, {state}</h5>
+                <h5>{post_city}, {post_state}</h5>
               </Col>
 
 
@@ -60,7 +60,9 @@ function PostProfile(props) {
             </Row>
 
             <Row>
-                <h6 style={{padding: "2vh"}}>{type}</h6><br/>
+                <h6 style={{padding: "2vh"}}>{type}</h6>
+              </Row>
+              <Row>
                 <h6 style={{padding: "2vh"}}>{content}</h6>
             </Row>
 

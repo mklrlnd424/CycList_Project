@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import cyclistAPI from '../api/cyclistAPI'
 import UserContext from '../contexts/UserContext'
 import { Link, useHistory } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 const EditPostForm = (props) => {
   
@@ -17,17 +18,19 @@ const EditPostForm = (props) => {
   const [content, setContent] = useState("")
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
-  const [intersection1, setIntersection1] = useState("")
-  const [intersection2, setIntersection2] = useState("")
+  const [lat, setLat] = useState(0)
+  const [long, setLong] = useState(0)
+  const [img, setImg] = useState("")
   
   useEffect(() => {
     setHeader(props.post.header)
     setType(props.post.type)
     setContent(props.post.content)
-    setCity(props.post.city)
-    setState(props.post.state)
-    setIntersection1(props.post.intersection1)
-    setIntersection2(props.post.intersection2)
+    setImg(props.post.img)
+    setLat(props.post.latitude)
+    setLong(props.post.longitude)
+    setCity(props.post.post_city)
+    setState(props.post.post_state)
   },[props.post])
 
   const handleSubmit = async (e) => {
@@ -43,10 +46,10 @@ const EditPostForm = (props) => {
         "header": header,
         "type": type,
         "content": content,
-        "city": city,
-        "state": state,
-        "intersection1": intersection1,
-        "intersection2": intersection2,
+        "post_city": city,
+        "post_state": state,
+        "latitude": lat,
+        "longitude": long,
         "create_date": props.post.create_date,
         "profile": props.post.profile,
         "user": props.post.user
@@ -68,91 +71,118 @@ const EditPostForm = (props) => {
 
   return (
     <div>
-      <Link to={"/profile"}><button>Profile Page</button></Link>
-      <Link to={"/home"}><button>Home Page</button></Link>
-    <form onSubmit={e => { handleSubmit(e) }}>
-      <label>Header</label>
-      <br />
-      <input name='header' type='text' value={header} onChange={e => setHeader(e.target.value)}/>
-      <br/>
-      <label>Type</label>
-      <br />
-        <select value={ type } onChange={e => setType(e.target.value)}>
-          <option value=""></option>
-          <option value="route">Trail Route</option>
-          <option value="hazardous">Hazardous Conditions</option>
-          <option value="other">Other</option>
-        </select>
-      <br />
-      <label>Whats New?</label>
-      <br />
-      <textarea rows="5" cols="40" id='content' name='content' type='text' value={ content } onChange={e => setContent(e.target.value)}></textarea>
-      <br />
-      <label>City</label>
-      <br />
-      <input name='city' type='text' value={ city } onChange={e => setCity(e.target.value)}/>
-      <br />
-      <label>State</label>
-      <br />
+    <Form style={{width: "100%", padding: "20px"}} onSubmit={e => { handleSubmit(e) }}>
+      <Form.Group controlId="header">
+        <Form.Label>Post Subject</Form.Label>
+        <Form.Control 
+        type="header" 
+        placeholder="Enter Subject"
+        value={ header }
+        onChange={(e) => setHeader(e.target.value)}
+        />
+      </Form.Group>
 
-      <select value={ state } onChange={e => setState(e.target.value)}>
-          <option value=""></option>
-          <option value="alabama">Alabama</option>
-          <option value="alaska">Alaska</option>
-          <option value="arizona">Arizona</option>
-          <option value="arkansas">Arkansas</option>
-          <option value="california">California</option>
-          <option value="colorado">Colorado</option>
-          <option value="connecticut">Connecticut</option>
-          <option value="washington_dc">Washington D.C.</option>
-          <option value="delaware">Delaware</option>
-          <option value="florida">Florida</option>
-          <option value="georgia">Georgia</option>
-          <option value="hawaii">Hawaii</option>
-          <option value="illinois">Illinois</option>
-          <option value="indiana">Indiana</option>
-          <option value="iowa">Iowa</option>
-          <option value="kansas">Kansas</option>
-          <option value="louisiana">Louisiana</option>
-          <option value="maine">Maine</option>
-          <option value="maryland">Maryland</option>
-          <option value="montana">Montana</option>
-          <option value="nebraska">Nebraska</option>
-          <option value="nevada">Nevada</option>
-          <option value="new_hampshire">New Hampshire</option>
-          <option value="new_jersey">New Jersey</option>
-          <option value="new_mexico">New Mexico</option>
-          <option value="new_york">New York</option>
-          <option value="north_carolina">North Carolina</option>
-          <option value="north_dakota">North Dakota</option>
-          <option value="ohio">Ohio</option>
-          <option value="oklahoma">Oklahoma</option>
-          <option value="oregon">Oregon</option>
-          <option value="pennsylvania">Pennsylvania</option>
-          <option value="rhode_island">Rhode Island</option>
-          <option value="south_carolina">South Carolina</option>
-          <option value="south_dakota">South Dakota</option>
-          <option value="tennessee">Tennessee</option>
-          <option value="texas">Texas</option>
-          <option value="utah">Utah</option>
-          <option value="vermont">Vermont</option>
-          <option value="virginia">Virginia</option>
-          <option value="washington">Washington</option>
-          <option value="wisconsin">Wisconsin</option>
-          <option value="wyoming">Wyoming</option>
-          
-        
-      </select>
-      <br />
-      <label>Intersection</label>
-      <br />
-      <input name='userName' type='text' value={ intersection1 } onChange={e => setIntersection1(e.target.value)}/> and 
-      <input name='userName' type='text' value={ intersection2 } onChange={e => setIntersection2(e.target.value)}/>
-      <br />
-      <input className='submitButton' type='submit' value='Submit Corrections'/>
-    </form>
+      <Form.Group>
+      <Form.Label>Post Type</Form.Label>
+      <Form.Control as="select"
+        value={ type }
+        onChange={e => setType(e.target.value)}
+        >
+        <option value="" disabled>Select One</option>
+        <option value="route">Trail Route</option>
+        <option value="hazardous">Hazardous</option>
+        <option value="other">Other</option>
+      </Form.Control>
+      </Form.Group>
+      
+      <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Post Content</Form.Label>
+        <Form.Control as="textarea"
+          placeholder="Enter Content"
+          value = { content }
+          onChange={e => setContent(e.target.value)}
+          rows={3}
+          />
+      </Form.Group>
+      <Form.Group controlId="city">
+        <Form.Label>City</Form.Label>
+        <Form.Control 
+        type="city" 
+        placeholder="City"
+        value={ city }
+        onChange={(e) => setCity(e.target.value)}
+        />
+      </Form.Group>
 
-  </div>
+      <Form.Group>
+      <Form.Label>State</Form.Label>
+      <Form.Control as="select"
+        value={ state }
+        onChange={e => setState(e.target.value)}
+        >
+        <option value="" disabled>Select One</option>
+        <option value="Alabama">Alabama</option>
+        <option value="Alaska">Alaska</option>
+        <option value="Arizona">Arizona</option>
+        <option value="Arkansas">Arkansas</option>
+        <option value="California">California</option>
+        <option value="Colorado">Colorado</option>
+        <option value="Connecticut">Connecticut</option>
+        <option value="Washington_dc">Washington D.C.</option>
+        <option value="Delaware">Delaware</option>
+        <option value="Florida">Florida</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Hawaii">Hawaii</option>
+        <option value="Illinois">Illinois</option>
+        <option value="Indiana">Indiana</option>
+        <option value="Iowa">Iowa</option>
+        <option value="Kansas">Kansas</option>
+        <option value="Louisiana">Louisiana</option>
+        <option value="Maine">Maine</option>
+        <option value="Maryland">Maryland</option>
+        <option value="Montana">Montana</option>
+        <option value="Nebraska">Nebraska</option>
+        <option value="Nevada">Nevada</option>
+        <option value="New_hampshire">New Hampshire</option>
+        <option value="New_jersey">New Jersey</option>
+        <option value="New_mexico">New Mexico</option>
+        <option value="New_york">New York</option>
+        <option value="North_carolina">North Carolina</option>
+        <option value="North_dakota">North Dakota</option>
+        <option value="Ohio">Ohio</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Oregon">Oregon</option>
+        <option value="Pennsylvania">Pennsylvania</option>
+        <option value="Rhode_island">Rhode Island</option>
+        <option value="South_carolina">South Carolina</option>
+        <option value="South_dakota">South Dakota</option>
+        <option value="Tennessee">Tennessee</option>
+        <option value="Texas">Texas</option>
+        <option value="Utah">Utah</option>
+        <option value="Vermont">Vermont</option>
+        <option value="Virginia">Virginia</option>
+        <option value="Washington">Washington</option>
+        <option value="Wisconsin">Wisconsin</option>
+        <option value="Wyoming">Wyoming</option>
+      </Form.Control>
+      </Form.Group>
+     
+
+      <Form.Group controlId="pic">
+        <Form.Label>Post Image</Form.Label>
+        <Form.Control 
+        type="pic" 
+        placeholder="Upload Image"
+        value={ img }
+        onChange={(e) => setImg(e.target.value)}
+        />
+      </Form.Group>
+
+      <Button variant="secondary" type="submit" block>
+        Submit
+      </Button>
+  </Form>
+</div>
   )
 }
 

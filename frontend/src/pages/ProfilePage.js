@@ -97,10 +97,10 @@ const ProfilePage = () => {
       
       <Container >
         <Row>
-        <Col style={{border: "1px solid"}}>
+        <Col >
           { renderProfilePage() }
         </Col>
-        <Col style={{border: "1px solid"}}>
+        <Col >
           <div className="sticky-top">
 
           <Row >

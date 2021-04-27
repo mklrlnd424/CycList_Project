@@ -12,55 +12,55 @@ POST_TYPE_CHOICES = (
 )
 
 STATE_CHOICES = [
-	('alabama', 'Alabama'),
-	('alaska', 'Alaska'),
-	('arizona', 'Arizona'),
-	('arkansas', 'Arkansas'),
-	('california', 'California'),
-	('colorado', 'Colorado'),
-	('connecticut', 'Connecticut'),
-	('washington_dc', 'Washington D.C.'),
-	('delaware', 'Delaware'),
-	('florida', 'Florida'),
-	('georgia', 'Georgia'),
-	('hawaii', 'Hawaii'),
-	('idaho', 'Idaho'),
-	('illinois', 'Illinois'),
-	('indiana', 'Indiana'),
-	('iowa', 'Iowa'),
-	('kansas', 'Kansas'),
-	('louisiana', 'Louisiana'),
-	('maine', 'Maine'),
-	('maryland', 'Maryland'),
-	('massachusetts', 'Massachusetts'),
-	('michigan', 'Michigan'),
-	('minnesota', 'Minnesota'),
-	('mississippi', 'Mississippi'),
-	('missouri', 'Missouri'),
-	('montana', 'Montana'),
-	('nebraska', 'Nebraska'),
-	('nevada', 'Nevada'),
-	('new_hampshire', 'New Hampshire'),
-	('new_jersey', 'New Jersey'),
-	('new_mexico', 'New Mexico'),
-	('new_york', 'New York'),
-	('north_carolina', 'North Carolina'),
-	('north_dakota', 'North Dakota'),
-	('ohio', 'Ohio'),
-	('oklahoma', 'Oklahoma'),
-	('oregon', 'Oregon'),
-	('pennsylvania', 'Pennsylvania'),
-	('rhode_island', 'Rhode Island'),
-	('south_carolina', 'South Carolina'),
-	('south_dakota', 'South Dakota'),
-	('tennessee', 'Tennessee'),
-	('texas', 'Texas'),
-	('utah', 'Utah'),
-	('vermont', 'Vermont'),
-	('virginia', 'Virginia'),
-	('washington', 'Washington'),
-	('wisconsin', 'Wisconsin'),
-	('wyoming', 'Wyoming')
+	('Alabama', 'Alabama'),
+	('Alaska', 'Alaska'),
+	('Arizona', 'Arizona'),
+	('Arkansas', 'Arkansas'),
+	('California', 'California'),
+	('Colorado', 'Colorado'),
+	('Connecticut', 'Connecticut'),
+	('Washington_dc', 'Washington D.C.'),
+	('Delaware', 'Delaware'),
+	('Florida', 'Florida'),
+	('Georgia', 'Georgia'),
+	('Hawaii', 'Hawaii'),
+	('Idaho', 'Idaho'),
+	('Illinois', 'Illinois'),
+	('Indiana', 'Indiana'),
+	('Iowa', 'Iowa'),
+	('Kansas', 'Kansas'),
+	('Louisiana', 'Louisiana'),
+	('Maine', 'Maine'),
+	('Maryland', 'Maryland'),
+	('Massachusetts', 'Massachusetts'),
+	('Michigan', 'Michigan'),
+	('Minnesota', 'Minnesota'),
+	('Mississippi', 'Mississippi'),
+	('Missouri', 'Missouri'),
+	('Montana', 'Montana'),
+	('Nebraska', 'Nebraska'),
+	('Nevada', 'Nevada'),
+	('New_hampshire', 'New Hampshire'),
+	('New_jersey', 'New Jersey'),
+	('New_mexico', 'New Mexico'),
+	('New_york', 'New York'),
+	('North_carolina', 'North Carolina'),
+	('North_dakota', 'North Dakota'),
+	('Ohio', 'Ohio'),
+	('Oklahoma', 'Oklahoma'),
+	('Oregon', 'Oregon'),
+	('Pennsylvania', 'Pennsylvania'),
+	('Rhode_island', 'Rhode Island'),
+	('South_carolina', 'South Carolina'),
+	('South_dakota', 'South Dakota'),
+	('Tennessee', 'Tennessee'),
+	('Texas', 'Texas'),
+	('Utah', 'Utah'),
+	('Vermont', 'Vermont'),
+	('Virginia', 'Virginia'),
+	('Washington', 'Washington'),
+	('Wisconsin', 'Wisconsin'),
+	('Wyoming', 'Wyoming')
 ]
 
 # django signals to create a default profile if needed for admin users 
@@ -81,11 +81,11 @@ class Post(models.Model):
     header = models.CharField(max_length=255)
     type = models.CharField(max_length=40, choices=POST_TYPE_CHOICES)
     content = models.TextField()
-    img = models.URLField(default='http://assets.stickpng.com/images/596ce35fed07ad6118f998e8.png')
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=40, choices=STATE_CHOICES)
-    intersection1 = models.CharField(max_length=255)
-    intersection2 = models.CharField(max_length=255)
+    img = models.URLField(default='https://snappygoat.com/b/7c1ad008542cf263b87b8fd6f4972f1b1e7a9995')
+    latitude = models.DecimalField(max_digits=15, decimal_places=10, default=41.8789)
+    longitude = models.DecimalField(max_digits=15, decimal_places=10, default=87.6359)
+    post_city = models.CharField(max_length=100, blank=True)
+    post_state = models.CharField(max_length=40, choices=STATE_CHOICES)
     created_date = models.DateTimeField(auto_now_add=True, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
     

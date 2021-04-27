@@ -102,7 +102,7 @@ const HomePage = () => {
             </Col>
 
             <Col >
-              <div className="sticky-top">
+              <div className="sticky-top" style={{top: "1rem"}}>
 
               <Row >
                 
