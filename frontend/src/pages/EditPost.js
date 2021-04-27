@@ -1,6 +1,4 @@
-import PostForm from '../components/PostForm'
 import React, { useState, useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import EditPostForm from '../components/EditPostForm'

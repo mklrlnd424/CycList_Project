@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 import PostMap from './PostMap'
@@ -8,11 +8,9 @@ import Flippy, { FrontSide, BackSide } from 'react-flippy'
 function PostHome(props) {
   const userInfo = useContext(UserContext)
 
-  const {id, header, type, content, post_city, post_state, img, profile, user} = props.post
+  const {id, header, type, content, post_city, post_state, img, profile } = props.post
 
-  console.log("userInfo: ",userInfo.user.profile.id)
-  console.log("profile: ", profile)
-
+  
   
   function renderPosts() {
     

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import cyclistAPI from '../api/cyclistAPI'
 import UserContext from '../contexts/UserContext'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
 const PostForm = () => {
@@ -56,24 +56,23 @@ const PostForm = () => {
   }
 
   useEffect(() => {
-
-    navigator.geolocation.getCurrentPosition(function(position) {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
-    });
-    setUserNo(userInfo.user.id)
-    setProfileNo(userInfo.user.profile.id)
+    async function getCoords() {
+      try {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          setLat(position.coords.latitude);
+          setLong(position.coords.longitude);
+        });
+        setUserNo(userInfo.user.id)
+        setProfileNo(userInfo.user.profile.id)
+  
+      }
+      catch (error){
+        console.log(error)
+    }
+    }
+    getCoords();
   },[lat, long])
 
-  
-  console.log(header)
-  console.log(type)
-  console.log(content)
-  console.log(city)
-  console.log(state)
-  console.log(img)
-  console.log("Post Lat: ", lat)
-  console.log("Post Long: ", long)
   return (
     <div>
         <Form style={{width: "100%", padding: "20px"}} onSubmit={e => { handleSubmit(e) }}>
@@ -94,9 +93,9 @@ const PostForm = () => {
             onChange={e => setType(e.target.value)}
             >
             <option value="" disabled>Select One</option>
-            <option value="route">Trail Route</option>
-            <option value="hazardous">Hazardous</option>
-            <option value="other">Other</option>
+            <option value="Route">Trail Route</option>
+            <option value="Hazardous">Hazardous</option>
+            <option value="Other">Other</option>
           </Form.Control>
           </Form.Group>
           
@@ -183,9 +182,15 @@ const PostForm = () => {
             />
           </Form.Group>
 
-          <Button variant="secondary" type="submit" block>
+          
+          {
+            type === 'hazardous' ? <Button variant="secondary" type="submit" block>
+            Submit to Local DOT
+          </Button> : <Button variant="secondary" type="submit" block>
             Submit
           </Button>
+          }
+          
       </Form>
   </div>
   )

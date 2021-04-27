@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import cyclistAPI from '../api/cyclistAPI'
 import UserContext from '../contexts/UserContext'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
 const EditPostForm = (props) => {
@@ -13,14 +13,14 @@ const EditPostForm = (props) => {
   
   // handler for editing
   // if clicked on edit submit => set initial states to post state
-  const [header, setHeader] = useState("")
-  const [type, setType] = useState("")
-  const [content, setContent] = useState("")
-  const [city, setCity] = useState("")
-  const [state, setState] = useState("")
+  const [header, setHeader] = useState()
+  const [type, setType] = useState()
+  const [content, setContent] = useState()
+  const [city, setCity] = useState()
+  const [state, setState] = useState()
   const [lat, setLat] = useState(0)
   const [long, setLong] = useState(0)
-  const [img, setImg] = useState("")
+  const [img, setImg] = useState()
   
   useEffect(() => {
     setHeader(props.post.header)
@@ -88,10 +88,10 @@ const EditPostForm = (props) => {
         value={ type }
         onChange={e => setType(e.target.value)}
         >
-        <option value="" disabled>Select One</option>
-        <option value="route">Trail Route</option>
-        <option value="hazardous">Hazardous</option>
-        <option value="other">Other</option>
+       
+        <option value="Route">Trail Route</option>
+        <option value="Hazardous">Hazardous</option>
+        <option value="Other">Other</option>
       </Form.Control>
       </Form.Group>
       

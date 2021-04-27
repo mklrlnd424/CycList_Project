@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav } from 'react-bootstrap'
 
 // Pages
 import LoginPage from './pages/LoginPage';
@@ -23,7 +22,7 @@ import NavBar from './components/Navbar'
 
 function App() {
   const [userInfo, setUser] = useState(null)
-  let history = useHistory
+  
 
   function updateUserInfo(newUserInfo) {
     setUser(newUserInfo)
@@ -43,7 +42,7 @@ function App() {
               userInfo !== null && <NavBar />
             } 
               {/* <Route exact path="/logout" render={() => <LogoutPage handleLogin={ updateUserInfo } />} /> */}
-              <Route exact path="/register" render={() => <RegPage />} />
+              <Route exact path="/sign-up" render={() => <RegPage />} />
               <Route exact path="/home" render={() => <HomePage handleLogin={ updateUserInfo } />} />
               <Route exact path="/profile" render={() => <ProfilePage />} />
               <Route exact path="/create-post" render={() => <CreatePost />} />

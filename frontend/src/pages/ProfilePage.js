@@ -4,8 +4,9 @@ import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostProfile from '../components/PostProfile'
 import WeatherDisplay from '../components/WeatherDisplay'
+import LoadWeatherData from '../components/LoadWeatherData'
 import GetDirections from '../components/GetDirections'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 
@@ -27,10 +28,6 @@ const ProfilePage = () => {
     setData(response)
     
   };
-
-  useEffect(() => {
-    GetUserPosts();
-  }, [])
 
 
 
@@ -67,18 +64,20 @@ const ProfilePage = () => {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
+  
 
 
   const WEATHER_API_URL = 'http://api.weatherapi.com/v1/current.json?key='
   const WEATHER_API_KEY = 'f39d610ee89543c0ad2210538212204'
 
   useEffect(() => {
-
+    
     const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition((position) => {
         setLat(position.coords.latitude);
         setLong(position.coords.longitude);
-      });
+      },
+      (error) => alert(new Date(), error), {enableHighAccuracy: true});
 
       await fetch(`${WEATHER_API_URL}${WEATHER_API_KEY}&q=${lat},${long}&aqi=no`)
       .then(res => res.json())
@@ -87,11 +86,10 @@ const ProfilePage = () => {
       });
     }
     fetchData();
+    GetUserPosts();
   }, [lat,long])
 
-  console.log(lat)
-  console.log(long)
-  console.log(weatherData)
+
   return (
   
       
@@ -108,7 +106,7 @@ const ProfilePage = () => {
               {(typeof weatherData.location != 'undefined') ? (
                     <WeatherDisplay weatherData={weatherData}/>
                   ): (
-                    <div> No weather data</div>
+                    <LoadWeatherData />
               )}
             
           </Row >

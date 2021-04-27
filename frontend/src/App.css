@@ -215,3 +215,15 @@ h6, p {
 .createEdit {
   width: 100%;
 }
+
+.loadingBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #343a40;
+  width: 100%;
+  height: 20vh;
+  border-radius: 20px;
+  margin-bottom: 2vh;
+}

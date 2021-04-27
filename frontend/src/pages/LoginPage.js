@@ -38,11 +38,13 @@ const LoginPage = (props) => {
   return( 
   <div className="login">
     <Form onSubmit={handleLogin}>
+      <Form.Label style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Roboto'}}><h1>CycList</h1></Form.Label>
         <Form.Group size="lg" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
             type="username"
+            placeholder="username"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
@@ -51,13 +53,19 @@ const LoginPage = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" variant="secondary">
+        <Button block size="lg" type="submit" variant="secondary" style={{marginBottom: "15px"}}>
           Login
         </Button>
+        <Link to='/sign-up'>
+          <Button block size="lg" type="submit" variant="secondary">
+              Sign Up
+          </Button>
+          </Link>
       </Form>
   </div>
   )

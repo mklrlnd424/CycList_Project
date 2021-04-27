@@ -10,6 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id','header', 'type', 'content', 'img', 'latitude', 'longitude', 'post_city', 'post_state','created_date', 'profile', 'user']
+        
 
     def get_user(self, obj):
         return obj.profile.user.id

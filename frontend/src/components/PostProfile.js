@@ -1,19 +1,15 @@
 import { useContext } from 'react'
 import UserContext from '../contexts/UserContext'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PostMap from './PostMap'
-import PostPage from '../pages/PostPage'
-import cyclistAPI from '../api/cyclistAPI'
-import Post from './Post'
-import { Card, Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import Flippy, { FrontSide, BackSide } from 'react-flippy'
 
 
 
 function PostProfile(props) {
   const userInfo = useContext(UserContext)
-  let history = useHistory()
-  const { header, city, content, post_city, post_state, state, type, img} = props.post
+  const { header, content, post_city, post_state, type, img} = props.post
   
 
   function renderPosts() {

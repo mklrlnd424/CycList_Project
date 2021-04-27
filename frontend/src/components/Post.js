@@ -12,7 +12,7 @@ const Post = (props) => {
   let history = useHistory()
   const userInfo = useContext(UserContext)
   const [post, setPost] = useState([])
-  // const classes = useStyles()
+  
   
   
  
@@ -50,7 +50,7 @@ const Post = (props) => {
     }
   }
 
-  console.log(post)
+  console.log("post info: ", post)
   return(
   
   <div>
@@ -100,7 +100,7 @@ const Post = (props) => {
         </div>
         <Col >
           <h4 style={{paddingTop: "1vh"}}>{post.header}</h4>
-          <h5 >{post.city}, {post.state}</h5>
+          <h5 >{post.post_city}, {post.post_state}</h5>
         </Col>
 
       </Row>

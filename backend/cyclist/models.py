@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 POST_TYPE_CHOICES = (
-    ('route', 'Trail Route'),
-    ('hazardous', 'Hazardous Conditions'),
-    ('other', 'Other') 
+    ('Route', 'Trail Route'),
+    ('Hazardous', 'Hazardous Conditions'),
+    ('Other', 'Other') 
 )
 
 STATE_CHOICES = [

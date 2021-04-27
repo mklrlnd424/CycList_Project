@@ -4,8 +4,9 @@ import UserContext from '../contexts/UserContext'
 import cyclistAPI from '../api/cyclistAPI'
 import PostHome from '../components/PostHome'
 import WeatherDisplay from '../components/WeatherDisplay'
+import LoadWeatherData from '../components/LoadWeatherData'
 import GetDirections from '../components/GetDirections'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 
@@ -27,9 +28,6 @@ const HomePage = () => {
   };
 
 
-  useEffect(() => {
-    GetPosts();
-  }, []) 
 
 
 
@@ -86,6 +84,7 @@ const HomePage = () => {
         setWeatherData(result)
       });
     }
+    GetPosts();
     fetchData();
   }, [lat,long])
 
@@ -109,7 +108,7 @@ const HomePage = () => {
                   {(typeof weatherData.location != 'undefined') ? (
                         <WeatherDisplay weatherData={weatherData}/>
                       ): (
-                        <div> No weather data</div>
+                        <LoadWeatherData />
                   )}
                 
               </Row >
